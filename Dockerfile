@@ -1,6 +1,7 @@
-FROM node:22-alpine
+FROM node:18-alpine
 # Installing libvips-dev for sharp Compatibility
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
+
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
@@ -14,6 +15,9 @@ WORKDIR /opt/app
 COPY . .
 RUN chown -R node:node /opt/app
 USER node
-RUN ["npm", "run", "build"]
+
+# Only build in production
+RUN if [ "$NODE_ENV" = "production" ] ; then npm run build ; fi
+
 EXPOSE 1337
 CMD ["npm", "run", "develop"]
