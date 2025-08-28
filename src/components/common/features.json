@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_common_features",
+  "info": {
+    "displayName": "features"
+  },
+  "options": {},
+  "attributes": {
+    "featureName": {
+      "type": "string"
+    },
+    "featureDescription": {
+      "type": "text"
+    },
+    "featureId": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

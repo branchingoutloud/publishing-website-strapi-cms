@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_common_reviews",
+  "info": {
+    "displayName": "review"
+  },
+  "options": {},
+  "attributes": {
+    "review": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer",
+      "min": 0,
+      "max": 5
+    },
+    "reviewerName": {
+      "type": "string"
+    },
+    "reviewersProfile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "reviewersCompany": {
+      "type": "string"
+    },
+    "reviewCreatedAt": {
+      "type": "date"
+    }
+  },
+  "config": {}
+}

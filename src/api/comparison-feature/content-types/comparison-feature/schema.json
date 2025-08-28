@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comparison_features",
+  "info": {
+    "singularName": "comparison-feature",
+    "pluralName": "comparison-features",
+    "displayName": "Comparison feature"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "product_feature_values": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-feature-value.product-feature-value",
+      "mappedBy": "feature_id"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_feature_values",
+  "info": {
+    "singularName": "product-feature-value",
+    "pluralName": "product-feature-values",
+    "displayName": "Product feature value"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "product_feature_values"
+    },
+    "feature_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comparison-feature.comparison-feature",
+      "inversedBy": "product_feature_values"
+    }
+  }
+}
