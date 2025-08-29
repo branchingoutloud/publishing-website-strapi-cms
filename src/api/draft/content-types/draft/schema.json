@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "drafts",
+  "info": {
+    "singularName": "draft",
+    "pluralName": "drafts",
+    "displayName": "draft"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "outline": {
+      "type": "string"
+    },
+    "body_text": {
+      "type": "string"
+    },
+    "draft_status": {
+      "type": "enumeration",
+      "enum": [
+        "idea",
+        "outline_ready",
+        "draft_ready",
+        "human_review",
+        "approved",
+        "published"
+      ]
+    },
+    "author_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "drafts"
+    },
+    "topic_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "drafts"
+    },
+    "draft_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::draft-document.draft-document",
+      "mappedBy": "draft"
+    },
+    "article_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-image.article-image",
+      "mappedBy": "draft_id"
+    }
+  }
+}

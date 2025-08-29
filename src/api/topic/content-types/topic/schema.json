@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topics",
+  "info": {
+    "singularName": "topic",
+    "pluralName": "topics",
+    "displayName": "topic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "topic_status": {
+      "type": "string"
+    },
+    "drafts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::draft.draft",
+      "mappedBy": "topic_id"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "topic_id"
+    }
+  }
+}

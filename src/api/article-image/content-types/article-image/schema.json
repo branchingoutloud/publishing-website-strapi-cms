@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_images",
+  "info": {
+    "singularName": "article-image",
+    "pluralName": "article-images",
+    "displayName": "article image"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::image.image",
+      "inversedBy": "article_images"
+    },
+    "draft_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::draft.draft",
+      "inversedBy": "article_images"
+    },
+    "position": {
+      "type": "integer"
+    },
+    "role": {
+      "type": "string"
+    }
+  }
+}

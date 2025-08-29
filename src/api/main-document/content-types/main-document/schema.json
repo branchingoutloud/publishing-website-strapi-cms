@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_documents",
+  "info": {
+    "singularName": "main-document",
+    "pluralName": "main-documents",
+    "displayName": "main document"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "raw_text": {
+      "type": "text"
+    },
+    "document_status": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "processed",
+        "archived"
+      ]
+    },
+    "document_published_at": {
+      "type": "datetime"
+    }
+  }
+}

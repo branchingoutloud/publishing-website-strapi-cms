@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "draft_documents",
+  "info": {
+    "singularName": "draft-document",
+    "pluralName": "draft-documents",
+    "displayName": "draft document"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "draft": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::draft.draft",
+      "inversedBy": "draft_documents"
+    }
+  }
+}

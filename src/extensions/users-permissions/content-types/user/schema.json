@@ -74,6 +74,12 @@
       "relation": "oneToMany",
       "target": "api::product-review.product-review",
       "mappedBy": "user_id"
+    },
+    "drafts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::draft.draft",
+      "mappedBy": "author_id"
     }
   }
 }
