@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "value": {
-      "type": "string"
+      "type": "string",
+      "default": "-"
     },
     "product": {
       "type": "relation",

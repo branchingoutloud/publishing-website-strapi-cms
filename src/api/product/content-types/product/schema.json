@@ -23,9 +23,6 @@
       "min": 0,
       "max": 5
     },
-    "type": {
-      "type": "string"
-    },
     "pros": {
       "type": "text"
     },
@@ -52,6 +49,27 @@
       "relation": "oneToMany",
       "target": "api::product-review.product-review",
       "mappedBy": "product_id"
+    },
+    "review_count": {
+      "type": "biginteger"
+    },
+    "category": {
+      "type": "string",
+      "required": true
+    },
+    "category_reference": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "product_logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }
