@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "review_feedbacks",
+  "info": {
+    "singularName": "review-feedback",
+    "pluralName": "review-feedbacks",
+    "displayName": "review feedback"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reviewer_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "review_feedbacks"
+    },
+    "draft_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::draft.draft",
+      "inversedBy": "review_feedbacks"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "review_status": {
+      "type": "enumeration",
+      "enum": [
+        "needs_changes",
+        "approved",
+        "rejected"
+      ]
+    }
+  }
+}

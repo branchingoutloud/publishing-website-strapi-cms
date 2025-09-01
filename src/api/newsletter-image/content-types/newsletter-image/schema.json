@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_images",
+  "info": {
+    "singularName": "newsletter-image",
+    "pluralName": "newsletter-images",
+    "displayName": "newsletter image"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "position": {
+      "type": "integer"
+    },
+    "role": {
+      "type": "string"
+    },
+    "image_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::image.image",
+      "inversedBy": "newsletter_images"
+    },
+    "newsletter_draft": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::newsletter-draft.newsletter-draft",
+      "inversedBy": "newsletter_images"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "export_histories",
+  "info": {
+    "singularName": "export-history",
+    "pluralName": "export-histories",
+    "displayName": "Export History"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "export_histories"
+    },
+    "resource_file_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resource-file.resource-file",
+      "inversedBy": "export_histories"
+    }
+  }
+}

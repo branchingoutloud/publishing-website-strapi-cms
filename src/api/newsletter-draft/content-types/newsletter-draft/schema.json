@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_drafts",
+  "info": {
+    "singularName": "newsletter-draft",
+    "pluralName": "newsletter-drafts",
+    "displayName": "newsletter draft"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "newsletter_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::newsletter.newsletter",
+      "inversedBy": "newsletter_drafts"
+    },
+    "outline": {
+      "type": "string"
+    },
+    "body_text": {
+      "type": "text"
+    },
+    "draft_status": {
+      "type": "enumeration",
+      "enum": [
+        "idea",
+        "outline_ready",
+        "draft_ready",
+        "human_review",
+        "approved",
+        "published"
+      ]
+    },
+    "author_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "newsletter_drafts"
+    },
+    "newsletter_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-image.newsletter-image",
+      "mappedBy": "newsletter_draft"
+    }
+  }
+}

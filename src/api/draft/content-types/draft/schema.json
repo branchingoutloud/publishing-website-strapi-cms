@@ -11,6 +11,12 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "topic_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "drafts"
+    },
     "title": {
       "type": "string"
     },
@@ -37,22 +43,28 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "drafts"
     },
-    "topic_id": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::topic.topic",
-      "inversedBy": "drafts"
-    },
     "draft_documents": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::draft-document.draft-document",
-      "mappedBy": "draft"
+      "mappedBy": "draft_id"
     },
     "article_images": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article-image.article-image",
+      "mappedBy": "draft_id"
+    },
+    "review_feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review-feedback.review-feedback",
+      "mappedBy": "draft_id"
+    },
+    "seo_metas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::seo-meta.seo-meta",
       "mappedBy": "draft_id"
     }
   }

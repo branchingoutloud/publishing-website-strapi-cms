@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "search_histories",
+  "info": {
+    "singularName": "search-history",
+    "pluralName": "search-histories",
+    "displayName": "Search History"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "search_histories"
+    },
+    "query": {
+      "type": "string"
+    },
+    "result_count": {
+      "type": "integer"
+    }
+  }
+}

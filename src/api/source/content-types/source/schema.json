@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sources",
+  "info": {
+    "singularName": "source",
+    "pluralName": "sources",
+    "displayName": "source"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "rss",
+        "social",
+        "manual"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "source_status": {
+      "type": "string"
+    },
+    "yes_crawl": {
+      "type": "boolean"
+    },
+    "trust_score": {
+      "type": "integer"
+    },
+    "main_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::main-document.main-document",
+      "mappedBy": "source_id"
+    },
+    "rss_feeds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rss-feed.rss-feed",
+      "mappedBy": "source_id"
+    }
+  }
+}

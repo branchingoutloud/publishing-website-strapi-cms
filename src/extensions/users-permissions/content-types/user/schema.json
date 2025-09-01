@@ -80,6 +80,72 @@
       "relation": "oneToMany",
       "target": "api::draft.draft",
       "mappedBy": "author_id"
+    },
+    "newsletters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter.newsletter",
+      "mappedBy": "newsletter_created_by"
+    },
+    "role_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::user-role.user-role",
+      "inversedBy": "users"
+    },
+    "newsletter_drafts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-draft.newsletter-draft",
+      "mappedBy": "author_id"
+    },
+    "review_feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review-feedback.review-feedback",
+      "mappedBy": "reviewer_id"
+    },
+    "user_activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-activity.user-activity",
+      "mappedBy": "user_id"
+    },
+    "search_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::search-history.search-history",
+      "mappedBy": "user_id"
+    },
+    "digital_footprints": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::digital-footprint.digital-footprint",
+      "mappedBy": "user_id"
+    },
+    "resources": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resource.resource",
+      "mappedBy": "author_id"
+    },
+    "export_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::export-history.export-history",
+      "mappedBy": "user_id"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription.subscription",
+      "mappedBy": "user_id"
+    },
+    "product_activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-activity.product-activity",
+      "mappedBy": "user_id"
     }
   }
 }
