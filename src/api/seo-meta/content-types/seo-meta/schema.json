@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seo_metas",
+  "info": {
+    "singularName": "seo-meta",
+    "pluralName": "seo-metas",
+    "displayName": "SEO Meta"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "draft_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::draft.draft",
+      "inversedBy": "seo_metas"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "readablility_score": {
+      "type": "integer"
+    },
+    "search_intent": {
+      "type": "string"
+    }
+  }
+}

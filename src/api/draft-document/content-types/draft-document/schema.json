@@ -11,10 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "draft": {
+    "draft_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::draft.draft",
+      "inversedBy": "draft_documents"
+    },
+    "main_document_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::main-document.main-document",
       "inversedBy": "draft_documents"
     }
   }

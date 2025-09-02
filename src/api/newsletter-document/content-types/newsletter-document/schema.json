@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_documents",
+  "info": {
+    "singularName": "newsletter-document",
+    "pluralName": "newsletter-documents",
+    "displayName": "newsletter document"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "newsletter_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::newsletter.newsletter",
+      "inversedBy": "newsletter_documents"
+    },
+    "main_document_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::main-document.main-document",
+      "inversedBy": "newsletter_documents"
+    }
+  }
+}

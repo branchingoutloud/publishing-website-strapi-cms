@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resource_files",
+  "info": {
+    "singularName": "resource-file",
+    "pluralName": "resource-files",
+    "displayName": "resource_file"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "resource_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::resource.resource",
+      "inversedBy": "resource_files"
+    },
+    "cdn_url": {
+      "type": "string"
+    },
+    "file_type": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "checksum": {
+      "type": "string"
+    },
+    "export_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::export-history.export-history",
+      "mappedBy": "resource_file_id"
+    }
+  }
+}

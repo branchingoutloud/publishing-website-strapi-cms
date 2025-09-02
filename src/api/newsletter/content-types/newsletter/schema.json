@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletters",
+  "info": {
+    "singularName": "newsletter",
+    "pluralName": "newsletters",
+    "displayName": "Newsletter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "string"
+    },
+    "newsletter_created_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "newsletters"
+    },
+    "topic_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "newsletters"
+    },
+    "newsletter_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-document.newsletter-document",
+      "mappedBy": "newsletter_id"
+    },
+    "newsletter_drafts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-draft.newsletter-draft",
+      "mappedBy": "newsletter_id"
+    },
+    "subscriptions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subscription.subscription",
+      "mappedBy": "newsletter_id"
+    }
+  }
+}

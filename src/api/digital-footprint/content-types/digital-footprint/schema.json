@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "digital_footprints",
+  "info": {
+    "singularName": "digital-footprint",
+    "pluralName": "digital-footprints",
+    "displayName": "Digital Footprint"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "digital_footprints"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "action_type": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "reference_id": {
+      "type": "uid"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}

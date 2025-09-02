@@ -43,6 +43,12 @@
       "relation": "oneToMany",
       "target": "api::article-image.article-image",
       "mappedBy": "image_id"
+    },
+    "newsletter_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-image.newsletter-image",
+      "mappedBy": "image_id"
     }
   }
 }

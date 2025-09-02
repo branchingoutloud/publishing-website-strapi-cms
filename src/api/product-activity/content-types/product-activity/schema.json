@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_activities",
+  "info": {
+    "singularName": "product-activity",
+    "pluralName": "product-activities",
+    "displayName": "product activity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "product_activities"
+    },
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "product_activities"
+    }
+  }
+}

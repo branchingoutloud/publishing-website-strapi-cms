@@ -4,7 +4,7 @@
   "info": {
     "singularName": "main-document",
     "pluralName": "main-documents",
-    "displayName": "main document"
+    "displayName": "Main Document"
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +27,30 @@
     },
     "document_published_at": {
       "type": "datetime"
+    },
+    "source_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::source.source",
+      "inversedBy": "main_documents"
+    },
+    "topic_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "main_documents"
+    },
+    "newsletter_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-document.newsletter-document",
+      "mappedBy": "main_document_id"
+    },
+    "draft_documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::draft-document.draft-document",
+      "mappedBy": "main_document_id"
     }
   }
 }
