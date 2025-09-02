@@ -48,8 +48,8 @@ services:
     networks:
       - strapi
 
-volumes:
-  strapi-data:
+# volumes:
+#   strapi-data:
 
 networks:
   strapi:

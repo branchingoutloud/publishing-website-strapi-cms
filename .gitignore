@@ -124,6 +124,8 @@ coverage
 license.txt
 exports
 .strapi
+strapi-data
+strapi-data/**
 dist
 build
 .strapi-updater.json
