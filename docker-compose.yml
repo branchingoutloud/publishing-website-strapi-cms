@@ -18,8 +18,8 @@ services:
       - "1337:1337"
     networks:
       - strapi
-    # depends_on:
-    #   - strapiDB
+    depends_on:
+      - strapiDB
 
   strapiDB:
     container_name: strapiDB
