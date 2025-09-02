@@ -5,18 +5,8 @@ services:
     build: .
     image: strapi:latest
     restart: unless-stopped
-    env_file: .env
-    environment:
-      DATABASE_CLIENT: postgres
-      DATABASE_HOST: strapiDB
-      DATABASE_PORT: 5432
-      DATABASE_NAME: strapi
-      DATABASE_USERNAME: strapi
-      DATABASE_PASSWORD: postgres123
-      JWT_SECRET: 123123awfawefa
-      ADMIN_JWT_SECRET: 123123awfawefa
-      APP_KEYS: ${APP_KEYS}
-      NODE_ENV: development
+    env_file: 
+      - .env
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
@@ -28,28 +18,22 @@ services:
       - "1337:1337"
     networks:
       - strapi
-    depends_on:
-      - strapiDB
+    # depends_on:
+    #   - strapiDB
 
   strapiDB:
     container_name: strapiDB
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
-    env_file: .env
+    env_file:
+      - .env
     image: postgres:16.0-alpine
-    environment:
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: postgres123
-      POSTGRES_DB: strapi
     volumes:
-      - strapi-data:/var/lib/postgresql/data/
+      - ./strapi-data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
     networks:
       - strapi
-
-volumes:
-  strapi-data:
 
 networks:
   strapi:
