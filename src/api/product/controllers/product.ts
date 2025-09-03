@@ -64,12 +64,12 @@ export default factories.createCoreController(
 
       const ids = productIds.split(",");
       // .map(Number);
-      // console.log(ids, "ids");
+      console.log(ids, "ids");
 
       let products = await strapi.entityService.findMany(
         "api::product.product",
         {
-          filters: { id: { $in: ids } },
+          where: { documentId: { $in: ids } },
           populate: {
             vendor: true,
             product_logo: true,
