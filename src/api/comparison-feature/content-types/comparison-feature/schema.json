@@ -19,6 +19,12 @@
       "relation": "oneToMany",
       "target": "api::product-feature-value.product-feature-value",
       "mappedBy": "feature_id"
+    },
+    "product_category_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "product_features"
     }
   }
 }
