@@ -20,7 +20,8 @@
       ]
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "source_status": {
       "type": "string"
