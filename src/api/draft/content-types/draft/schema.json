@@ -24,7 +24,7 @@
       "type": "string"
     },
     "body_text": {
-      "type": "string"
+      "type": "text"
     },
     "draft_status": {
       "type": "enumeration",

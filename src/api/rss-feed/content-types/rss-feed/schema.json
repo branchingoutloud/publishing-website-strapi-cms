@@ -21,7 +21,8 @@
       "type": "string"
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "description": {
       "type": "text"
