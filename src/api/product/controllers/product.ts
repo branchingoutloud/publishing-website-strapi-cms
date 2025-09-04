@@ -90,11 +90,11 @@ export default factories.createCoreController(
           vendor: true,
           product_logo: true,
           // category_reference: true,
-          // product_feature_values: {
-          //   populate: {
-          //     feature_id: true,
-          //   },
-          // },
+          product_feature_values: {
+            populate: {
+              feature_id: true,
+            },
+          },
         },
       });
 
@@ -126,17 +126,17 @@ export default factories.createCoreController(
       console.log(ids, "ids");
 
       let products = await strapi.documents("api::product.product").findMany({
-          filters: { documentId: { $in: ids } },
-          populate: {
-            vendor: true,
-            product_logo: true,
-            product_feature_values: {
-              populate: {
-                feature_id: true,
-              },
+        filters: { documentId: { $in: ids } },
+        populate: {
+          vendor: true,
+          product_logo: true,
+          product_feature_values: {
+            populate: {
+              feature_id: true,
             },
           },
-        });
+        },
+      });
 
       products = products?.map((product: any) => {
         let features = {};
