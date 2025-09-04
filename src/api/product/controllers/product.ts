@@ -89,7 +89,7 @@ export default factories.createCoreController(
         populate: {
           vendor: true,
           product_logo: true,
-          // category_reference: true,
+          category_reference: true,
           product_feature_values: {
             populate: {
               feature_id: true,
@@ -130,6 +130,7 @@ export default factories.createCoreController(
         populate: {
           vendor: true,
           product_logo: true,
+          category_reference: true,
           product_feature_values: {
             populate: {
               feature_id: true,
