@@ -138,19 +138,19 @@ export default factories.createCoreController(
         },
       });
 
-      products = products?.map((product: any) => {
-        let features = {};
-        product?.product_feature_values?.map((feature: any) => {
-          features = {
-            ...features,
-            [feature?.feature_id?.name]: feature?.value,
-          };
-        });
-        return {
-          ...product,
-          ["product_feature_values"]: features,
-        };
-      });
+      // products = products?.map((product: any) => {
+      //   let features = {};
+      //   product?.product_feature_values?.map((feature: any) => {
+      //     features = {
+      //       ...features,
+      //       [feature?.feature_id?.name]: feature?.value,
+      //     };
+      //   });
+      //   return {
+      //     ...product,
+      //     ["product_feature_values"]: features,
+      //   };
+      // });
       return { data: products };
     },
   })
