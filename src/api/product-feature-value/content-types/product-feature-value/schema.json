@@ -11,10 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "value": {
-      "type": "string",
-      "default": "-"
-    },
     "product": {
       "type": "relation",
       "relation": "manyToOne",
@@ -26,6 +22,15 @@
       "relation": "manyToOne",
       "target": "api::comparison-feature.comparison-feature",
       "inversedBy": "product_feature_values"
+    },
+    "feature_value": {
+      "type": "enumeration",
+      "enum": [
+        "Bad",
+        "Average",
+        "Good",
+        "Excellent"
+      ]
     }
   }
 }
