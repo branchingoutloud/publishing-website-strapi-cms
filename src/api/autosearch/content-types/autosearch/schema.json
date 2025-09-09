@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "autosearches",
+  "info": {
+    "singularName": "autosearch",
+    "pluralName": "autosearches",
+    "displayName": "Autosearch"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "search_json": {
+      "type": "json"
+    }
+  }
+}

@@ -17,6 +17,9 @@
   "dependencies": {
     "@strapi/plugin-cloud": "5.23.0",
     "@strapi/plugin-users-permissions": "5.23.0",
+    "@strapi/provider-email-nodemailer": "^5.23.3",
+    "@strapi/provider-email-sendgrid": "^5.23.3",
+    "@strapi/provider-email-sendmail": "^5.23.3",
     "@strapi/strapi": "5.23.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
