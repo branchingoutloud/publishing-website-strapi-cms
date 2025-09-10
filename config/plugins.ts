@@ -3,7 +3,7 @@ export default ({ env }) => ({
         config: {
             provider: 'nodemailer',
             providerOptions: {
-                host: env('SMTP_HOST', 'smtp-relay.brevo.com'),
+                host: env('SMTP_HOST', 'smtp.gmail.com'),
                 port: env('SMTP_PORT', 587),
                 secure: false, // true for 465, false for other ports
                 auth: {
@@ -21,4 +21,5 @@ export default ({ env }) => ({
             },
         },
     },
+
 });

@@ -104,12 +104,10 @@ export default factories.createCoreController(
       return { data: results, meta: { pagination: { ...safePagination, total: meta } } };
 
     },
-
     extractSummaryPoints(text) {
       // How do you want to split the text into points?
       return text ? text.split(",").map((point) => point.trim()) : [];
     },
-
     async compareProducts(ctx) {
       const { productIds } = ctx.query;
 

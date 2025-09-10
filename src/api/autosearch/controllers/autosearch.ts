@@ -80,13 +80,36 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
             }))
         };
 
-        const response = await strapi.documents("api::autosearch.autosearch").update({
-            documentId: "oysxu2jtlqol2zrx4jqo5kah",
-            data: {
-                // type: "product",
-                search_json: transformedData
-            },
-        });
+        //     where: {
+        //         type: "product"
+        //     },
+        //     data: {
+        //         // type: "product",
+        //         search_json: transformedData
+        //     },
+        // });
+        let response;
+        const matchedDocuments = await strapi
+            .documents("api::autosearch.autosearch")
+            .findMany({
+                filters: { type: "product" },
+                limit: 1,
+                // fields: ['documentId'] // fetch only needed field for update
+            });
+        if (matchedDocuments.length > 0) {
+            const documentId = matchedDocuments[0].documentId;
+            response = await strapi
+                .documents("api::autosearch.autosearch")
+                .update({
+                    documentId: documentId,
+                    data: {
+                        search_json: transformedData
+                    }
+                });
+            console.log('Updated document:', response);
+        } else {
+            console.log('No document found with type "product"');
+        }
 
         return response;
     },
