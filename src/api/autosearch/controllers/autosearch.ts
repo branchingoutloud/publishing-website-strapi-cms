@@ -7,6 +7,7 @@ import { factories } from '@strapi/strapi'
 // export default factories.createCoreController('api::autosearch.autosearch');
 
 export default factories.createCoreController('api::autosearch.autosearch', ({ strapi }) => ({
+    
     async findOne(ctx) {
         const { id } = ctx.params;
         const result = await strapi.documents("api::autosearch.autosearch").findOne({
@@ -19,6 +20,8 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         return result;
     },
     async getProductSearchJson(ctx) {
+        
+        // get all products
         const products = await strapi.documents("api::product.product").findMany({
             fields: ["name"],
             populate: {
@@ -28,13 +31,17 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
             }
         });
 
+        // get all product category
         const productCategory = await strapi.documents("api::category.category").findMany({
             fields: ["name", "search_terms"] as any
         })
 
+        // merge the data together
         const mergedData = { products, productCategory };
 
         let response;
+
+        // take the first match and update it 
         const matchedDocuments = await strapi
             .documents("api::autosearch.autosearch")
             .findMany({
@@ -59,6 +66,43 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
 
         return response;
     },
+
+    async getUniversalSearchJson(ctx) {
+        // get all products
+        const products = await strapi.documents("api::product.product").findMany({
+            fields: ["name"],
+            populate: {
+                category_reference: {
+                    fields: ["name"],
+                },
+            }
+        });
+
+        // get all product category
+        const productCategory = await strapi.documents("api::category.category").findMany({
+            fields: ["name", "search_terms"] as any
+        })
+
+        // get all articles
+        const articles = await strapi.documents("api::article.article").findMany({
+            fields: ["title", "author"] as any
+        })
+        
+        // get all newsletter
+        const newsletter = await strapi.documents("api::newsletter.newsletter").findMany({
+            fields: ["title", "author"] as any
+        })
+        
+        // get all 
+        const vendor = await strapi.documents("api::vendor.vendor").findMany({
+            fields: ["name", "about"] as any
+        })
+
+        // merge the data together
+        const mergedData = { products, productCategory, articles, newsletter, vendor };
+
+        return mergedData;
+    }
 
 
     // async getProductSearchJson1(ctx) {

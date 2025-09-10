@@ -23,6 +23,14 @@ export default factories.createCoreController(
                 filters,
                 sort,
                 pagination,
+                populate: {
+                    newsletter_drafts: {
+                        fields: ["outline", "body_text", "draft_status"]
+                    },
+                    topic_id: {
+                        fields: ["title", "description", "topic_status"]
+                    },
+                },
             });
 
             // If you need meta for pagination, you can
