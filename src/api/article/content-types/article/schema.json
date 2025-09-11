@@ -36,6 +36,9 @@
     },
     "featured": {
       "type": "boolean"
+    },
+    "article_category": {
+      "type": "text"
     }
   }
 }
