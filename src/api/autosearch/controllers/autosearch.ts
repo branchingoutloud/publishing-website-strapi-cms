@@ -7,7 +7,7 @@ import { factories } from '@strapi/strapi'
 // export default factories.createCoreController('api::autosearch.autosearch');
 
 export default factories.createCoreController('api::autosearch.autosearch', ({ strapi }) => ({
-    
+
     async findOne(ctx) {
         const { id } = ctx.params;
         const result = await strapi.documents("api::autosearch.autosearch").findOne({
@@ -20,7 +20,7 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         return result;
     },
     async getProductSearchJson(ctx) {
-        
+
         // get all products
         const products = await strapi.documents("api::product.product").findMany({
             fields: ["name"],
@@ -87,12 +87,12 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         const articles = await strapi.documents("api::article.article").findMany({
             fields: ["title", "author"] as any
         })
-        
+
         // get all newsletter
         const newsletter = await strapi.documents("api::newsletter.newsletter").findMany({
-            fields: ["title", "author"] as any
+            fields: ["title", "description"] as any
         })
-        
+
         // get all 
         const vendor = await strapi.documents("api::vendor.vendor").findMany({
             fields: ["name", "about"] as any
@@ -101,10 +101,33 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         // merge the data together
         const mergedData = { products, productCategory, articles, newsletter, vendor };
 
-        return mergedData;
-    }
+        let response;
 
+        // take the first match and update it 
+        const matchedDocuments = await strapi
+            .documents("api::autosearch.autosearch")
+            .findMany({
+                filters: { type: "universal" },
+                limit: 1,
+                // fields: ['documentId'] // fetch only needed field for update
+            });
+        if (matchedDocuments.length > 0) {
+            const documentId = matchedDocuments[0].documentId;
+            response = await strapi
+                .documents("api::autosearch.autosearch")
+                .update({
+                    documentId: documentId,
+                    data: {
+                        search_json: JSON.stringify(mergedData) as any
+                    }
+                });
+            console.log('Updated document:', response);
+        } else {
+            console.log('No document found with type "product"');
+        }
 
+        return response;
+    },
     // async getProductSearchJson1(ctx) {
     //     const products = await strapi.documents("api::product.product").findMany({
     //         fields: ["name"],
