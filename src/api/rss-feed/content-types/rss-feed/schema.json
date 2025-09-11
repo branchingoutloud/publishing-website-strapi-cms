@@ -29,6 +29,12 @@
     },
     "language": {
       "type": "string"
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "estimated_read_time": {
+      "type": "integer"
     }
   }
 }
