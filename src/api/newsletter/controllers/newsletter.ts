@@ -38,5 +38,23 @@ export default factories.createCoreController(
 
             return { data: result, meta: { pagination: { ...safePagination, total: meta } } };
         },
+        async create(ctx) {
+            const result = await strapi.documents("api::newsletter.newsletter").create(ctx.request.body);
+
+            console.log("NewsLetter created : ", result);
+
+            const emailService = strapi
+                .plugin('email')
+                .service('email');
+
+            emailService.send({
+                to: 'pranav.sonawane@pyrack.com',
+                from: 'pranav.sonawane@pyrack.com',
+                subject: 'Here is your newsletter',
+                text: `Check out your latest newsletter at https://aimsintel.com/newsletter/${result.id}`,
+            });
+
+            return result;
+        },
     })
 )
