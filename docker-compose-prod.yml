@@ -3,7 +3,8 @@ services:
   strapi:
     container_name: strapi
     build: 
-        context: Dockerfile.prod
+        context: .
+        dockerfile: Dockerfile.prod
         args:
           NODE_ENV: production
     image: strapi:latest
