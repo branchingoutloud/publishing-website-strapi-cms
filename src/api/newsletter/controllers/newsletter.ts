@@ -11,6 +11,14 @@ export default factories.createCoreController(
             const { id } = ctx.params;
             const result = await strapi.documents("api::newsletter.newsletter").findOne({
                 documentId: id,
+                populate: {
+                    newsletter_drafts: {
+                        fields: ["outline", "body_text", "draft_status"]
+                    },
+                    topic_id: {
+                        fields: ["title", "description", "topic_status"]
+                    },
+                }
             });
 
             return result;

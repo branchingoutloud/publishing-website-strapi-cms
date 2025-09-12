@@ -11,43 +11,17 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-    # environment:
-    #   NODE_ENV: production
-    #   DATABASE_CLIENT: postgres
-    #   DATABASE_HOST: strapiDB
-    #   DATABASE_PORT: 5432
-    #   DATABASE_NAME: ${DATABASE_NAME}
-    #   DATABASE_USERNAME: ${DATABASE_USERNAME}
-    #   DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-    #   JWT_SECRET: ${JWT_SECRET}
-    #   ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-    #   APP_KEYS: ${APP_KEYS}
     volumes:
-      - ./config:/opt/app/config - ./src:/opt/app/src - ./package.json:/opt/package.json - ./package-lock.json:/opt/package-lock.json - ./.env:/opt/app/.env - ./public:/opt/app/public
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      - ./.env:/opt/app/.env
+      - ./public:/opt/app/public
     ports:
       - "1337:1337"
     networks:
       - strapi
-    # strapiDB:
-    # container_name: strapiDB
-    # platform: linux/amd64
-    # restart: unless-stopped
-    # env_file:
-    #   - .env
-    # image: postgres:16.0-alpine
-    # environment:
-    #   POSTGRES_DB: ${DATABASE_NAME}
-    #   POSTGRES_USER: ${DATABASE_USERNAME}
-    #   POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-    # volumes:
-    #   - ./strapi-data:/var/lib/postgresql/data/
-    # ports:
-    #   - "5432:5432"
-    # networks:
-    #   - strapi
-
-    # volumes:
-    #   strapi_data:
 
 networks:
   strapi:
