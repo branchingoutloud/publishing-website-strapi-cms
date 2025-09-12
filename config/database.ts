@@ -33,8 +33,8 @@ export default ({ env }) => {
         ssl: process.env.NODE_ENV === 'production' ?
           {
             require: true,
-            rejectUnauthorized: false, // use true if you also add AWS CA cert in PROD
-          }
+            rejectUnauthorized: false, // use true if you also add AWS CA cert
+          } 
           :
           env.bool('DATABASE_SSL', false) && {
             key: env('DATABASE_SSL_KEY', undefined),
