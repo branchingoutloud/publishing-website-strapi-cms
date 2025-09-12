@@ -18,7 +18,8 @@
       "inversedBy": "subscriptions"
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "newsletter_id": {
       "type": "relation",
@@ -26,8 +27,9 @@
       "target": "api::newsletter.newsletter",
       "inversedBy": "subscriptions"
     },
-    "subscription_status": {
-      "type": "string"
+    "isSubscriptionActive": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

@@ -72,6 +72,11 @@
       "relation": "oneToMany",
       "target": "api::product-activity.product-activity",
       "mappedBy": "product_id"
+    },
+    "isTrending": {
+      "type": "boolean",
+      "required": false,
+      "default": false
     }
   }
 }

@@ -30,14 +30,20 @@ export default ({ env }) => {
         database: env('DATABASE_NAME', 'strapi'),
         user: env('DATABASE_USERNAME', 'strapi'),
         password: env('DATABASE_PASSWORD', 'strapi_123'),
-        ssl: env.bool('DATABASE_SSL', false) && {
-          key: env('DATABASE_SSL_KEY', undefined),
-          cert: env('DATABASE_SSL_CERT', undefined),
-          ca: env('DATABASE_SSL_CA', undefined),
-          capath: env('DATABASE_SSL_CAPATH', undefined),
-          cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
-        },
+        ssl: process.env.NODE_ENV === 'production' ?
+          {
+            require: true,
+            rejectUnauthorized: false, // use true if you also add AWS CA cert
+          } 
+          :
+          env.bool('DATABASE_SSL', false) && {
+            key: env('DATABASE_SSL_KEY', undefined),
+            cert: env('DATABASE_SSL_CERT', undefined),
+            ca: env('DATABASE_SSL_CA', undefined),
+            capath: env('DATABASE_SSL_CAPATH', undefined),
+            cipher: env('DATABASE_SSL_CIPHER', undefined),
+            rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
+          },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
       automigration: true,

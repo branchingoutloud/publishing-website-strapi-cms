@@ -34,6 +34,16 @@
       "relation": "oneToMany",
       "target": "api::export-history.export-history",
       "mappedBy": "resource_file_id"
+    },
+    "file": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

@@ -67,7 +67,8 @@
       "configurable": false
     },
     "is_validated": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "product_reviews": {
       "type": "relation",
