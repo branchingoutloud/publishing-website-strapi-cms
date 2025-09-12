@@ -39,6 +39,9 @@
     },
     "article_category": {
       "type": "text"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
