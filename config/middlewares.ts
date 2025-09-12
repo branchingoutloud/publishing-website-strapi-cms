@@ -14,6 +14,7 @@ export default [
             'blob:',
             'market-assets.strapi.io',
             `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`,
+            `${process.env.CDN_URL}`,
           ],
           'media-src': [
             "'self'",
@@ -21,6 +22,7 @@ export default [
             'blob:',
             'market-assets.strapi.io',
             `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com`,
+            `${process.env.CDN_URL}`,
           ],
           upgradeInsecureRequests: null,
         },
