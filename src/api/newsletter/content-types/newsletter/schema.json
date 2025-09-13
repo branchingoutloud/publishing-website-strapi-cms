@@ -20,6 +20,12 @@
     "type": {
       "type": "string"
     },
+    "images":{
+      "type": "text"
+    },
+    "keywords":{
+      "type":"text"
+    },
     "newsletter_created_by": {
       "type": "relation",
       "relation": "manyToOne",

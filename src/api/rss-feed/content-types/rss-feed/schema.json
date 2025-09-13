@@ -35,6 +35,15 @@
     },
     "estimated_read_time": {
       "type": "integer"
+    },
+    "author_name": {
+      "type": "text"
+    },
+    "primary_tag": {
+      "type": "text"
+    },
+    "secondary_tags": {
+      "type": "text"
     }
   }
 }
