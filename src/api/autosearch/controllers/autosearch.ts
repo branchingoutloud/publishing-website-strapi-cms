@@ -69,7 +69,7 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
     async getUniversalSearchJson(ctx) {
         // get all products
         const products = await strapi.documents("api::product.product").findMany({
-            fields: ["name"],
+            fields: ["name", "description"],
             populate: {
                 category_reference: {
                     fields: ["name"],
