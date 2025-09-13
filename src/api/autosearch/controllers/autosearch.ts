@@ -92,6 +92,11 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         const newsletter = await strapi.documents("api::newsletter.newsletter").findMany({
             fields: ["title", "description"] as any
         })
+        
+        // get all rss feed
+        const news = await strapi.documents("api::rss-feed.rss-feed").findMany({
+            fields: ["title", "description", "estimated_read_time", "thumbnail_url"] as any
+        })
 
         // get all 
         const vendor = await strapi.documents("api::vendor.vendor").findMany({
@@ -99,7 +104,7 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         })
 
         // merge the data together
-        const mergedData = { products, productCategory, articles, newsletter, vendor };
+        const mergedData = { products, productCategory, articles, newsletter, vendor, news };
 
         let response;
 
