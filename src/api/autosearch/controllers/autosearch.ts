@@ -74,6 +74,7 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
                 category_reference: {
                     fields: ["name"],
                 },
+                product_logo: true
             }
         });
 
