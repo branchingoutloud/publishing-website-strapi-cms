@@ -42,6 +42,15 @@
     },
     "description": {
       "type": "text"
+    },
+    "tags": {
+      "type": "text"
+    },
+    "executive_summary":{
+        "type": "text"
+    },
+    "References":{
+        "type": "text"
     }
   }
 }

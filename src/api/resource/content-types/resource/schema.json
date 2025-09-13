@@ -40,6 +40,16 @@
       "relation": "oneToMany",
       "target": "api::resource-file.resource-file",
       "mappedBy": "resource_id"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false
+    },
+    "thumbnail_cdn_url": {
+      "type": "string"
+    },
+    "vendor": {
+      "type": "string"
     }
   }
 }
