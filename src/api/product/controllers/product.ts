@@ -152,5 +152,69 @@ export default factories.createCoreController(
       // });
       return { data: products };
     },
+    async getProductsByCategory(ctx) {
+      const { categoryId } = ctx.params;
+      const { pagination, filters, sort } = ctx.query;
+      const safeFilters = filters && typeof filters === "object" ? filters : {};
+
+      if (categoryId) {
+        // Return products for a specific category
+        const products = await strapi.documents("api::product.product").findMany({
+          filters: {
+            ...safeFilters,
+            category_reference: { documentId: categoryId }
+          },
+          sort,
+          pagination,
+          populate: {
+            vendor: true,
+            product_logo: true,
+            category_reference: true,
+            product_feature_values: {
+              populate: {
+                feature_id: true,
+              },
+            },
+          },
+        });
+
+        const category = await strapi.documents("api::category.category").findOne({
+          documentId: categoryId,
+          populate: {
+            product_features: true,
+          },
+        });
+
+        return {
+          data: {
+            category,
+            products
+          }
+        };
+      } else {
+        // Return all categories with their products
+        const categories = await strapi.documents("api::category.category").findMany({
+          filters: safeFilters,
+          sort,
+          pagination,
+          populate: {
+            products: {
+              populate: {
+                vendor: true,
+                product_logo: true,
+                product_feature_values: {
+                  populate: {
+                    feature_id: true,
+                  },
+                },
+              },
+            },
+            product_features: true,
+          },
+        });
+
+        return { data: categories };
+      }
+    },
   })
 );

@@ -66,7 +66,6 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
 
         return response;
     },
-
     async getUniversalSearchJson(ctx) {
         // get all products
         const products = await strapi.documents("api::product.product").findMany({
@@ -127,6 +126,77 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
         }
 
         return response;
+    },
+    async likesearch(ctx) {
+        const { filter } = ctx.query;
+        if (!filter) {
+            return ctx.badRequest('Filter parameter is required');
+        }
+
+        const searchTerm = filter.toString().toLowerCase();
+
+        const [articles, newsletters, products, news] = await Promise.all([
+            strapi.documents("api::article.article").findMany({
+                fields: ["title", "author", "body_text", "article_category", "description"] as any,
+                // populate: {
+                //     category_id: { fields: ["name"] },
+                //     topic_id: { fields: ["title"] },
+                //     tags_id: { fields: ["name"] }
+                // }
+            }),
+            strapi.documents("api::newsletter.newsletter").findMany({
+                fields: ["title", "description", "type",] as any,
+                populate: {
+                    topic_id: { fields: ["title"] },
+                    newsletter_drafts: { fields: ["outline", "body_text"] },
+                    newsletter_created_by: true,
+                    newsletter_documents: true
+                }
+            }),
+
+            strapi.documents("api::product.product").findMany({
+                fields: ["name", "description", "pros", "cons"] as any,
+                populate: {
+                    category_reference: { fields: ["name"] },
+                    vendor: { fields: ["name"] },
+                    product_logo: true
+                }
+            }),
+            strapi.documents("api::rss-feed.rss-feed").findMany({
+                fields: ["title", "description", "url", "thumbnail_url"] as any,
+                populate: {
+                    source_id: true
+                }
+            })
+        ]);
+
+        const searchInObject = (obj: any): boolean => {
+            if (!obj) return false;
+            const searchableValue = (value: any): boolean => {
+                if (typeof value === 'string') {
+                    return value.toLowerCase().includes(searchTerm);
+                }
+                if (Array.isArray(value)) {
+                    return value.some(item => searchInObject(item));
+                }
+                if (typeof value === 'object' && value !== null) {
+                    return searchInObject(value);
+                }
+                return false;
+            };
+            return Object.values(obj).some(searchableValue);
+        };
+        const filteredArticles = articles.filter(article => searchInObject(article));
+        const filteredNewsletters = newsletters.filter(newsletter => searchInObject(newsletter));
+        const filteredProducts = products.filter(product => searchInObject(product));
+        const filteredNews = news.filter(news => searchInObject(news));
+        return {
+            articles: filteredArticles,
+            newsletters: filteredNewsletters,
+            products: filteredProducts,
+            news: filteredNews,
+            totalResults: filteredArticles.length + filteredNewsletters.length + filteredProducts.length + filteredNews.length
+        };
     },
     // async getProductSearchJson1(ctx) {
     //     const products = await strapi.documents("api::product.product").findMany({

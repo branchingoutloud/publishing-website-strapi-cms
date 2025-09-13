@@ -10,5 +10,10 @@ export default {
       path: '/get-universal-search',
       handler: 'autosearch.getUniversalSearchJson',
     },
+    {
+      method: 'GET',
+      path: '/likesearch',
+      handler: 'autosearch.likesearch',
+    },
   ]
 };
