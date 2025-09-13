@@ -53,6 +53,9 @@
     "review_count": {
       "type": "biginteger"
     },
+    "screenshot_urls": {
+      "type": "json"
+    },
     "category_reference": {
       "type": "relation",
       "relation": "manyToOne",

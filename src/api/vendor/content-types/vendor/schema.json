@@ -29,6 +29,9 @@
     "employee_count": {
       "type": "integer"
     },
+    "website": {
+      "type": "string"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
