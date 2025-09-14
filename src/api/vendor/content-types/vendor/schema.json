@@ -32,6 +32,9 @@
     "website": {
       "type": "string"
     },
+    "logo_url": {
+      "type": "string"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
