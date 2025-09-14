@@ -13,7 +13,6 @@ export default factories.createCoreController('api::resource.resource', ({ strap
                 author_id: true,
                 resource_files: {
                     populate: ['file'] as any,
-                    thumbnail: true
                 }
             }
         });
