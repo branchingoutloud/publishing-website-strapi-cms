@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
+import EmailTemplateService from '../../../services/email-template'
 
 export default factories.createCoreController(
     'api::newsletter.newsletter',
@@ -55,12 +56,41 @@ export default factories.createCoreController(
                 .plugin('email')
                 .service('email');
 
-            emailService.send({
-                to: 'pranav.sonawane@pyrack.com',
-                from: 'pranav.sonawane@pyrack.com',
-                subject: 'Here is your newsletter',
-                text: `Check out your latest newsletter at https://aimsintel.com/newsletter/${result.id}`,
-            });
+            try {
+                console.log('Newsletter creation result:', result);
+
+                // Get the HTML template with newsletter data
+                const htmlTemplate = await EmailTemplateService.getNewsletterTemplate({
+                    title: result.title,
+                    description: result.description,
+                    subheading: 'This weeks updated intel!',
+                    newsletterId: result.documentId,
+                    websiteUrl: 'https://aimsintel.com'
+                });
+
+                console.log('HTML template generated, length:', htmlTemplate.length);
+
+                const emailOptions = {
+                    to: 'pranav.sonawane@pyrack.com',
+                    from: 'pyracktesting@gmail.com',
+                    subject: `New Newsletter: ${result.title || 'Newsletter'}`,
+                    text: `Check out your latest newsletter at https://aimsintel.com/newsletter/${result.documentId}`,
+                    html: htmlTemplate,
+                };
+
+                console.log('Sending email with options:', {
+                    ...emailOptions,
+                    html: `[HTML Content - ${htmlTemplate.length} characters]`
+                });
+
+                await emailService.send(emailOptions);
+
+                console.log('Newsletter email sent successfully');
+            } catch (error) {
+                console.error('Error sending newsletter email:', error);
+                console.error('Error stack:', error.stack);
+                // Don't throw error to avoid breaking newsletter creation
+            }
 
             return result;
         },
