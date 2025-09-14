@@ -11,6 +11,7 @@ export default factories.createCoreController('api::resource.resource', ({ strap
                 topic_id: true,
                 type_id: true,
                 author_id: true,
+                thumbnail: true,
                 resource_files: {
                     populate: ['file'] as any,
                 }
