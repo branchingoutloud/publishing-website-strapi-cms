@@ -23,11 +23,14 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
 
         // get all products
         const products = await strapi.documents("api::product.product").findMany({
-            fields: ["name"],
+            fields: ["name", "description"],
             populate: {
                 category_reference: {
                     fields: ["name"],
                 },
+                product_logo: {
+                    fields: ["url"],
+                }
             }
         });
 
@@ -74,7 +77,9 @@ export default factories.createCoreController('api::autosearch.autosearch', ({ s
                 category_reference: {
                     fields: ["name"],
                 },
-                product_logo: true
+                product_logo: {
+                    fields: ["url"],
+                }
             }
         });
 
