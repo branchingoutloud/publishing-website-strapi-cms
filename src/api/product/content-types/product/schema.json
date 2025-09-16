@@ -80,6 +80,9 @@
       "type": "boolean",
       "required": false,
       "default": false
+    },
+    "faqs": {
+      "type": "json"
     }
   }
 }
